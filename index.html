@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rose Gothique</title>
+    <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        
+        .container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+        }
+        
+        h1 {
+            font-family: 'Metal Mania', cursive;
+            font-size: 8rem;
+            color: #8b0000;
+            position: absolute;
+            z-index: 1;
+            margin: 0;
+            text-align: center;
+        }
+        
+        .rose {
+            position: absolute;
+            z-index: 2;
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: center;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        /* Tige courbée */
+        .stem {
+            width: 8px;
+            height: 150px;
+            background: linear-gradient(to bottom, #2d5016 0%, #1a3009 100%);
+            border-radius: 4px;
+            position: relative;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+            margin-top: -10px;
+            transform: rotate(-5deg);
+            border-radius: 50% 50% 4px 4px;
+        }
+        
+        .stem::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%);
+            border-radius: inherit;
+        }
+        
+        /* Feuilles */
+        .leaf {
+            position: absolute;
+            width: 50px;
+            height: 30px;
+            background: linear-gradient(135deg, #4a7c2c 0%, #2d5016 100%);
+            border-radius: 0 50% 50% 0;
+            box-shadow: inset -2px -2px 5px rgba(0,0,0,0.3);
+        }
+        
+        .leaf:nth-child(1) {
+            top: 40px;
+            left: -45px;
+            transform: rotate(-30deg);
+        }
+        
+        .leaf:nth-child(2) {
+            top: 90px;
+            right: -45px;
+            transform: rotate(30deg) scaleX(-1);
+        }
+        
+        /* Fleur de rose */
+        .flower {
+            position: relative;
+            width: 140px;
+            height: 140px;
+        }
+        
+        /* Pétales externes - disposition en cercle */
+        .petal {
+            position: absolute;
+            width: 50px;
+            height: 70px;
+            background: linear-gradient(135deg, #ff1744 0%, #8b0000 100%);
+            border-radius: 50% 50% 50% 0%;
+            top: 50%;
+            left: 50%;
+            transform-origin: 0% 100%;
+            box-shadow: inset -3px -3px 8px rgba(0,0,0,0.3);
+        }
+        
+        .petal:nth-child(1) {
+            transform: translate(-50%, -100%) rotate(0deg);
+        }
+        
+        .petal:nth-child(2) {
+            transform: translate(-50%, -100%) rotate(72deg);
+        }
+        
+        .petal:nth-child(3) {
+            transform: translate(-50%, -100%) rotate(144deg);
+        }
+        
+        .petal:nth-child(4) {
+            transform: translate(-50%, -100%) rotate(216deg);
+        }
+        
+        .petal:nth-child(5) {
+            transform: translate(-50%, -100%) rotate(288deg);
+        }
+        
+        /* Pétales internes - plus petits */
+        .petal-inner {
+            position: absolute;
+            width: 35px;
+            height: 50px;
+            background: linear-gradient(135deg, #ff4569 0%, #c41e3a 100%);
+            border-radius: 50% 50% 50% 0%;
+            top: 50%;
+            left: 50%;
+            transform-origin: 0% 100%;
+            box-shadow: inset -2px -2px 6px rgba(0,0,0,0.3);
+        }
+        
+        .petal-inner:nth-child(6) {
+            transform: translate(-50%, -100%) rotate(36deg);
+        }
+        
+        .petal-inner:nth-child(7) {
+            transform: translate(-50%, -100%) rotate(108deg);
+        }
+        
+        .petal-inner:nth-child(8) {
+            transform: translate(-50%, -100%) rotate(180deg);
+        }
+        
+        .petal-inner:nth-child(9) {
+            transform: translate(-50%, -100%) rotate(252deg);
+        }
+        
+        .petal-inner:nth-child(10) {
+            transform: translate(-50%, -100%) rotate(324deg);
+        }
+        
+        /* Centre de la rose */
+        .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 25px;
+            height: 25px;
+            background: radial-gradient(circle, #4a0e0e 0%, #2a0505 100%);
+            border-radius: 50%;
+            z-index: 10;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+        }
+        
+        /* Adaptation mobile */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 4rem;
+            }
+            
+            .stem {
+                height: 120px;
+            }
+            
+            .flower {
+                width: 110px;
+                height: 110px;
+            }
+            
+            .petal {
+                width: 40px;
+                height: 55px;
+            }
+            
+            .petal-inner {
+                width: 28px;
+                height: 40px;
+            }
+            
+            .leaf {
+                width: 40px;
+                height: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Rose</h1>
+        <div class="rose">
+            <div class="stem">
+                <div class="leaf"></div>
+                <div class="leaf"></div>
+            </div>
+            <div class="flower">
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal-inner"></div>
+                <div class="petal-inner"></div>
+                <div class="petal-inner"></div>
+                <div class="petal-inner"></div>
+                <div class="petal-inner"></div>
+                <div class="center"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
