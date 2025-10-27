@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rose Gothique</title>
+    <title>Rose Gothique Animée</title>
     <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet">
     <style>
         body {
@@ -33,6 +33,16 @@
             z-index: 1;
             margin: 0;
             text-align: center;
+            animation: titleGlow 4s ease-in-out infinite alternate;
+        }
+        
+        @keyframes titleGlow {
+            0% {
+                text-shadow: 0 0 10px #8b0000, 0 0 20px #8b0000;
+            }
+            100% {
+                text-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000;
+            }
         }
         
         .rose {
@@ -41,9 +51,19 @@
             display: flex;
             flex-direction: column-reverse;
             align-items: center;
-            top: 50%;
-            left: 50%;
+            top: 45%;
+            left: 70%;
             transform: translate(-50%, -50%);
+            animation: sway 8s ease-in-out infinite alternate;
+        }
+        
+        @keyframes sway {
+            0%, 100% {
+                transform: translate(-50%, -50%) translateY(10px) translateX(0);
+            }
+            50% {
+                transform: translate(-50%, -50%) translateY(-10px) translateX(15px);
+            }
         }
         
         /* Tige courbée */
@@ -57,6 +77,16 @@
             margin-top: -10px;
             transform: rotate(-5deg);
             border-radius: 50% 50% 4px 4px;
+            animation: stemSway 8s ease-in-out infinite alternate;
+        }
+        
+        @keyframes stemSway {
+            0%, 100% {
+                transform: rotate(-5deg);
+            }
+            50% {
+                transform: rotate(-2deg);
+            }
         }
         
         .stem::before {
@@ -76,18 +106,39 @@
             background: linear-gradient(135deg, #4a7c2c 0%, #2d5016 100%);
             border-radius: 0 50% 50% 0;
             box-shadow: inset -2px -2px 5px rgba(0,0,0,0.3);
+            animation: leafSway 6s ease-in-out infinite alternate;
+        }
+        
+        @keyframes leafSway {
+            0%, 100% {
+                transform: rotate(-30deg);
+            }
+            50% {
+                transform: rotate(-35deg);
+            }
         }
         
         .leaf:nth-child(1) {
             top: 40px;
             left: -45px;
             transform: rotate(-30deg);
+            animation-delay: 0.5s;
         }
         
         .leaf:nth-child(2) {
             top: 90px;
             right: -45px;
             transform: rotate(30deg) scaleX(-1);
+            animation-name: leafSway2;
+        }
+        
+        @keyframes leafSway2 {
+            0%, 100% {
+                transform: rotate(30deg) scaleX(-1);
+            }
+            50% {
+                transform: rotate(35deg) scaleX(-1);
+            }
         }
         
         /* Fleur de rose */
@@ -95,6 +146,16 @@
             position: relative;
             width: 140px;
             height: 140px;
+            animation: flowerSway 7s ease-in-out infinite alternate;
+        }
+        
+        @keyframes flowerSway {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(5deg);
+            }
         }
         
         /* Pétales externes - disposition en cercle */
@@ -108,26 +169,46 @@
             left: 50%;
             transform-origin: 0% 100%;
             box-shadow: inset -3px -3px 8px rgba(0,0,0,0.3);
+            animation: petalSway 5s ease-in-out infinite alternate;
+        }
+        
+        @keyframes petalSway {
+            0%, 100% {
+                transform: translate(-50%, -100%) rotate(var(--base-rotation)) scale(1);
+            }
+            50% {
+                transform: translate(-50%, -100%) rotate(calc(var(--base-rotation) + 5deg)) scale(1.05);
+            }
         }
         
         .petal:nth-child(1) {
+            --base-rotation: 0deg;
             transform: translate(-50%, -100%) rotate(0deg);
+            animation-delay: 0.1s;
         }
         
         .petal:nth-child(2) {
+            --base-rotation: 72deg;
             transform: translate(-50%, -100%) rotate(72deg);
+            animation-delay: 0.3s;
         }
         
         .petal:nth-child(3) {
+            --base-rotation: 144deg;
             transform: translate(-50%, -100%) rotate(144deg);
+            animation-delay: 0.5s;
         }
         
         .petal:nth-child(4) {
+            --base-rotation: 216deg;
             transform: translate(-50%, -100%) rotate(216deg);
+            animation-delay: 0.7s;
         }
         
         .petal:nth-child(5) {
+            --base-rotation: 288deg;
             transform: translate(-50%, -100%) rotate(288deg);
+            animation-delay: 0.9s;
         }
         
         /* Pétales internes - plus petits */
@@ -141,26 +222,46 @@
             left: 50%;
             transform-origin: 0% 100%;
             box-shadow: inset -2px -2px 6px rgba(0,0,0,0.3);
+            animation: innerPetalSway 4s ease-in-out infinite alternate;
+        }
+        
+        @keyframes innerPetalSway {
+            0%, 100% {
+                transform: translate(-50%, -100%) rotate(var(--base-rotation)) scale(1);
+            }
+            50% {
+                transform: translate(-50%, -100%) rotate(calc(var(--base-rotation) + 3deg)) scale(1.03);
+            }
         }
         
         .petal-inner:nth-child(6) {
+            --base-rotation: 36deg;
             transform: translate(-50%, -100%) rotate(36deg);
+            animation-delay: 0.2s;
         }
         
         .petal-inner:nth-child(7) {
+            --base-rotation: 108deg;
             transform: translate(-50%, -100%) rotate(108deg);
+            animation-delay: 0.4s;
         }
         
         .petal-inner:nth-child(8) {
+            --base-rotation: 180deg;
             transform: translate(-50%, -100%) rotate(180deg);
+            animation-delay: 0.6s;
         }
         
         .petal-inner:nth-child(9) {
+            --base-rotation: 252deg;
             transform: translate(-50%, -100%) rotate(252deg);
+            animation-delay: 0.8s;
         }
         
         .petal-inner:nth-child(10) {
+            --base-rotation: 324deg;
             transform: translate(-50%, -100%) rotate(324deg);
+            animation-delay: 1s;
         }
         
         /* Centre de la rose */
@@ -175,6 +276,18 @@
             border-radius: 50%;
             z-index: 10;
             box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+            animation: centerPulse 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes centerPulse {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1.1);
+                box-shadow: 0 2px 12px rgba(139, 0, 0, 0.7);
+            }
         }
         
         /* Adaptation mobile */
@@ -211,7 +324,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Rose</h1>
+        <h1 style="letter-spacing: 15px;">Rose</h1>
         <div class="rose">
             <div class="stem">
                 <div class="leaf"></div>
